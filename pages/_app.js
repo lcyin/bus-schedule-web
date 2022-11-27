@@ -1,11 +1,13 @@
-import Layout from "../components/Layout";
-import "../styles/globals.css";
+// import Layout from "../src/components/Layout";
+import FullLayout from "../src/layouts/FullLayout";
+// import "../styles/globals.css";
+import "../styles/style.scss";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
+    <FullLayout>
       <Component {...pageProps} />
-    </Layout>
+    </FullLayout>
   );
 }
 

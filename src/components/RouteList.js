@@ -5,12 +5,9 @@ import RouteItem from "./RouteItem";
 const RouteList = ({ busRoutes }) => {
   return (
     <div className={routeStyles.grid}>
-      {" "}
-      <ul>
-        {busRoutes.map((route) => (
-          <RouteItem key={route.id} route={route} />
-        ))}
-      </ul>
+      {busRoutes.map((route) => (
+        <RouteItem key={route.id} route={route} />
+      ))}
     </div>
   );
 };
