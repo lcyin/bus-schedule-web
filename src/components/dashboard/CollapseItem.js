@@ -17,27 +17,25 @@ const CollapseItem = ({ activeItem, data, index, clickEvent }) => {
 
   const [etaList, setEtaList] = useState([]);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (activeItem === index) {
-        console.log(
-          "🚀 ~ file: CollapseItem.js ~ line 20 ~ intervalId ~ activeItem",
-          activeItem
-        );
-        fetch(
-          `https://data.etabus.gov.hk/v1/transport/kmb/eta/${data.stop.stop}/${query.id}/1`
-        )
-          .then((res) => res.json())
-          .then((etaData) => {
-            console.log(
-              "🚀 ~ file: CollapseItem.js ~ line 21 ~ useEffect ~ etaData",
-              etaData
-            );
-            setEtaList(etaData.data);
-          });
-      }
-    }, 1000);
+  const fetchEtaList = () => {
+    if (activeItem === index) {
+      console.log(
+        "🚀 ~ file: CollapseItem.js ~ line 26 ~ fetchEtaList ~ activeItem",
+        activeItem
+      );
+      fetch(
+        `https://data.etabus.gov.hk/v1/transport/kmb/eta/${data.stop.stop}/${query.id}/1`
+      )
+        .then((res) => res.json())
+        .then((etaData) => {
+          setEtaList(etaData.data.filter((s) => s.dir === data.bound));
+        });
+    }
+  };
 
+  useEffect(() => {
+    fetchEtaList();
+    const intervalId = setInterval(fetchEtaList, 1000);
     return () => clearInterval(intervalId);
   }, [activeItem]);
 
@@ -70,14 +68,25 @@ const CollapseItem = ({ activeItem, data, index, clickEvent }) => {
                   new Date()
                 );
 
-                return (
-                  <div key={etai} className="d-flex align-items-center p-2 ">
-                    <div className="ms-3">
-                      {/* <h6 className="mb-0">{data.stop.name_tc}</h6> */}
-                      <p>{minsDiff} mins</p>
+                if (minsDiff > 0) {
+                  return (
+                    <div key={etai} className="d-flex align-items-center p-2 ">
+                      <div className="ms-3">
+                        {/* <h6 className="mb-0">{data.stop.name_tc}</h6> */}
+                        <p>{minsDiff} mins</p>
+                      </div>
                     </div>
-                  </div>
-                );
+                  );
+                } else {
+                  return (
+                    <div key={etai} className="d-flex align-items-center p-2 ">
+                      <div className="ms-3">
+                        {/* <h6 className="mb-0">{data.stop.name_tc}</h6> */}
+                        <p>passed</p>
+                      </div>
+                    </div>
+                  );
+                }
               })
             ) : (
               <div className="d-flex align-items-center p-2 ">
