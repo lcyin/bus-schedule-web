@@ -9,11 +9,12 @@ import {
 } from "reactstrap";
 import PropTypes from "prop-types";
 import Image from "next/image";
+import imageLoader from "../../../loader";
 
 const Blog = ({ image, title, subtitle, text, color }) => {
   return (
     <Card>
-      <Image alt="Card image cap" src={image} />
+      <Image loader={imageLoader} alt="Card image cap" src={image} />
       <CardBody className="p-4">
         <CardTitle tag="h5">{title}</CardTitle>
         <CardSubtitle>{subtitle}</CardSubtitle>

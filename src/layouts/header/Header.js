@@ -16,6 +16,7 @@ import {
 } from "reactstrap";
 import LogoWhite from "../../assets/images/logos/amplelogowhite.svg";
 import user1 from "../../assets/images/users/user1.jpg";
+import imageLoader from "../../../loader";
 
 const Header = ({ showMobmenu }) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -30,7 +31,7 @@ const Header = ({ showMobmenu }) => {
     <Navbar color="secondary" dark expand="md">
       <div className="d-flex align-items-center">
         <NavbarBrand href="/" className="d-lg-none">
-          <Image src={LogoWhite} alt="logo" />
+          <Image loader={imageLoader} src={LogoWhite} alt="logo" />
         </NavbarBrand>
         <Button color="secondary" className="d-lg-none" onClick={showMobmenu}>
           <i className="bi bi-list"></i>
@@ -79,6 +80,7 @@ const Header = ({ showMobmenu }) => {
           <DropdownToggle color="secondary">
             <div style={{ lineHeight: "0px" }}>
               <Image
+                loader={imageLoader}
                 src={user1}
                 alt="profile"
                 className="rounded-circle"

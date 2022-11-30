@@ -1,5 +1,5 @@
 import { Row, Col, Table, Card, CardTitle, CardBody } from "reactstrap";
-import RouteScheduleTables from "../../src/components/dashboard/ProjectTable";
+import RouteScheduleTables from "../../src/components/dashboard/RouteScheduleTables";
 
 const Tables = () => {
   return (
