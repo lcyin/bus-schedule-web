@@ -51,31 +51,21 @@ const routeData = [
   },
 ];
 
-const Feeds = () => {
+const RouteHome = () => {
   return (
     <Card>
       <CardBody>
-        <CardTitle tag="h5">KMB BUS</CardTitle>
-        <CardSubtitle className="mb-2 text-muted" tag="h6">
-          Widget you can use
-        </CardSubtitle>
+        <CardTitle tag="h5">Search Bus Route</CardTitle>
+
         <ListGroup flush className="mt-4 ">
           {routeData.map((route) => (
             <ListGroupItem
               key={route.id}
               action
-              // as={`/route/${route.id}`}
               href={`/route/${route.route}`}
               tag="a"
               className="d-flex align-items-center p-3 border-0 hstack gap-3"
             >
-              {/* <Button
-                className="rounded-circle me-3"
-                size="sm"
-                color={feed.color}
-              >
-                <i className={feed.icon} />
-              </Button> */}
               <div>{route.route}</div>
               <div>To: {route.dest_tc}</div>
               <div className="ms-auto text-muted text-small">{route.date}</div>
@@ -87,4 +77,4 @@ const Feeds = () => {
   );
 };
 
-export default Feeds;
+export default RouteHome;
