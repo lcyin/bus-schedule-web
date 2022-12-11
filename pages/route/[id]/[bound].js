@@ -18,7 +18,6 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  console.log("🚀 ~ file: index.js:110 ~ getStaticProps ~ context", params);
   const res = await fetch(
     `http://localhost:3088/bus-route/routes/?route=${params.id}&bound=${params.bound}`
   );
@@ -32,7 +31,6 @@ export const getStaticProps = async ({ params }) => {
 
 const RouteTables = ({ routeData }) => {
   const router = useRouter();
-  console.log("🚀 ~ file: [bound].js:35 ~ RouteTables ~ router", router);
   return (
     <Row>
       <Col lg="12">

@@ -17,27 +17,22 @@ const CollapseItem = ({ activeItem, data, index, clickEvent }) => {
 
   const [etaList, setEtaList] = useState([]);
 
-  const fetchEtaList = () => {
-    if (activeItem === index) {
-      console.log(
-        "🚀 ~ file: CollapseItem.js ~ line 26 ~ fetchEtaList ~ activeItem",
-        activeItem
-      );
-      fetch(
-        `https://data.etabus.gov.hk/v1/transport/kmb/eta/${data.stop.stop}/${query.id}/1`
-      )
-        .then((res) => res.json())
-        .then((etaData) => {
-          setEtaList(etaData.data.filter((s) => s.dir === data.bound));
-        });
-    }
-  };
-
   useEffect(() => {
+    const fetchEtaList = () => {
+      if (activeItem === index) {
+        fetch(
+          `https://data.etabus.gov.hk/v1/transport/kmb/eta/${data.stop.stop}/${query.id}/1`
+        )
+          .then((res) => res.json())
+          .then((etaData) => {
+            setEtaList(etaData.data.filter((s) => s.dir === data.bound));
+          });
+      }
+    };
     fetchEtaList();
-    const intervalId = setInterval(fetchEtaList, 1000);
+    const intervalId = setInterval(fetchEtaList, 60 * 1000);
     return () => clearInterval(intervalId);
-  }, [activeItem]);
+  }, [activeItem, data.bound, data.stop.stop, index, query.id]);
 
   return (
     <>
