@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3088/bus-route/routes/all");
+  const res = await fetch("http://localhost:3088/api/v1/bus-route/routes/all");
   const data = await res.json();
   return {
     props: {

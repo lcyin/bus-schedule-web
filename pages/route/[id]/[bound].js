@@ -4,7 +4,7 @@ import { Row, Col, Button, Table, Card, CardTitle, CardBody } from "reactstrap";
 import RouteScheduleTables from "../../../src/components/dashboard/RouteScheduleTables";
 
 export const getStaticPaths = async () => {
-  const res = await fetch("http://localhost:3088/bus-route/routes/all");
+  const res = await fetch("http://localhost:3088/api/v1/bus-route/routes/all");
   const data = await res.json();
   const paths = data.map((route) => {
     return {
@@ -19,7 +19,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const res = await fetch(
-    `http://localhost:3088/bus-route/routes/?route=${params.id}&bound=${params.bound}`
+    `http://localhost:3088/api/v1/bus-route/routes/?route=${params.id}&bound=${params.bound}`
   );
   const data = await res.json();
   return {
