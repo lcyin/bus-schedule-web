@@ -20,7 +20,7 @@ const RouteScheduleTables = ({ routeData }) => {
               <tr>
                 <th>Station</th>
                 {/* <th>Fee</th> */}
-                <th>Time</th>
+                {/* <th>Time</th> */}
               </tr>
             </thead>
             <tbody>

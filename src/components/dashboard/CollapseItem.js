@@ -51,7 +51,7 @@ const CollapseItem = ({ activeItem, data, index, clickEvent }) => {
             </div>
           </div>
         </td>
-        <td>6 mins</td>
+        {/* <td>6 mins</td> */}
       </tr>
       <tr className="border-top">
         <Collapse isOpen={activeItem === index}>
